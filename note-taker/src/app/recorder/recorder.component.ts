@@ -9,16 +9,25 @@ export class RecorderComponent implements OnInit {
   @ViewChild('recognizedText') recognizedTextElement!: ElementRef;
 
   recognition: any;
-  recognizedText: string = '';
+  recognizedText = '';
   storedTexts: string[] = [];
-  isRecording: boolean = false;
+  isRecording = false;
 
   constructor() {
+    this.initRecognition();
+  }
+
+  ngOnInit(): void {
+    this.displayText();
+  }
+
+  initRecognition() {
     if ('webkitSpeechRecognition' in window) {
       this.recognition = new (window as any).webkitSpeechRecognition();
       this.recognition.continuous = true;
       this.recognition.interimResults = true;
       this.recognition.lang = 'ko-KR';
+      this.setupRecognitionEvents();
     } else {
       console.error(
         'webkitSpeechRecognition is not supported in this browser.'
@@ -26,22 +35,22 @@ export class RecorderComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void {
-    this.displayText();
+  setupRecognitionEvents() {
+    if (this.recognition) {
+      this.recognition.onresult = (event: any) => {
+        const transcript = Array.from(event.results)
+          .map((result: any) => result[0].transcript)
+          .join(' ');
+        this.recognizedText = transcript.trim();
+        this.updateRecognizedTextElement();
+      };
+    }
   }
 
   startRecord() {
     if (this.recognition) {
       this.recognition.start();
       this.isRecording = true;
-      this.recognition.onresult = (event: any) => {
-        let transcript = '';
-        for (let i = 0; i < event.results.length; i++) {
-          transcript += event.results[i][0].transcript + ' ';
-        }
-        this.recognizedText = transcript.trim();
-        this.updateRecognizedTextElement();
-      };
     }
   }
 
