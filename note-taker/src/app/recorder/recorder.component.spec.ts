@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { RecorderComponent } from './recorder.component';
+import { GeneralButtonComponent } from '../general-button/general-button.component';
 
 describe('RecorderComponent', () => {
   let component: RecorderComponent;
@@ -8,7 +9,7 @@ describe('RecorderComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [RecorderComponent],
+      declarations: [RecorderComponent, GeneralButtonComponent],
     });
     fixture = TestBed.createComponent(RecorderComponent);
     component = fixture.componentInstance;

@@ -57,6 +57,7 @@ export class RecorderComponent implements OnInit {
   stopRecord() {
     if (this.recognition && this.isRecording) {
       this.saveText();
+      this.isRecording = false;
       this.recognition.stop();
     }
   }

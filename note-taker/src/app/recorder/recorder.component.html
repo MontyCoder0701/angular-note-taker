@@ -1,10 +1,14 @@
-<button class="record-button" id="start-record-button" (click)="startRecord()">
-  Record
-</button>
-<button class="record-button" id="stop-record-button" (click)="stopRecord()">
-  Stop
-</button>
-<button class="record-button" id="clear-record-button" (click)="clearRecord()">
-  Clear
-</button>
-<p>Recognized Text: {{ recognizedText }}</p>
+<app-record-button
+  label="Record"
+  (buttonClick)="startRecord()"
+  [ngClass]="{ 'recording-button:focus': isRecording }"
+></app-record-button>
+<app-record-button
+  label="Stop"
+  (buttonClick)="stopRecord()"
+></app-record-button>
+<app-record-button
+  label="Clear"
+  (buttonClick)="clearRecord()"
+></app-record-button>
+<p class="result-box">{{ recognizedText }}</p>
