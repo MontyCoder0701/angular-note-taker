@@ -1,4 +1,5 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { TextDataService } from '../../service/text-data.service';
 
 @Component({
   selector: 'app-recorder',
@@ -13,7 +14,7 @@ export class RecorderComponent implements OnInit {
   storedTexts: string[] = [];
   isRecording = false;
 
-  constructor() {
+  constructor(private textDataService: TextDataService) {
     this.initRecognition();
   }
 
@@ -56,32 +57,25 @@ export class RecorderComponent implements OnInit {
 
   stopRecord() {
     if (this.recognition && this.isRecording) {
-      this.saveText();
+      this.textDataService.saveText(this.recognizedText);
       this.isRecording = false;
       this.recognition.stop();
     }
   }
 
   displayText() {
-    const storedTexts = localStorage.getItem('storedTexts');
-    if (storedTexts) {
-      this.storedTexts = JSON.parse(storedTexts);
+    const storedTexts = this.textDataService.getStoredTexts();
+    if (storedTexts.length > 0) {
+      this.storedTexts = storedTexts;
       this.recognizedText = this.storedTexts.join(' ');
       this.updateRecognizedTextElement();
     }
   }
 
-  saveText() {
-    if (this.recognizedText) {
-      this.storedTexts.push(this.recognizedText);
-      localStorage.setItem('storedTexts', JSON.stringify(this.storedTexts));
-    }
-  }
-
   clearRecord() {
+    this.textDataService.clearText();
     this.recognizedText = '';
     this.storedTexts = [];
-    localStorage.removeItem('storedTexts');
     this.updateRecognizedTextElement();
   }
 

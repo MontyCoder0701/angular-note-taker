@@ -11,4 +11,4 @@
   label="Clear"
   (buttonClick)="clearRecord()"
 ></app-record-button>
-<p class="result-box">{{ recognizedText }}</p>
+<app-text-box [recognizedText]="recognizedText"></app-text-box>
