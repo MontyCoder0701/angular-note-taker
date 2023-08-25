@@ -1,8 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { RecorderComponent } from './recorder.component';
-import { GeneralButtonComponent } from '../shared/general-button/general-button.component';
-import { TextBoxComponent } from 'src/app/shared/text-box/text-box.component';
+import { CoreModule } from '../core/core.module';
+import { SharedModule } from '../shared/shared.module';
 
 describe('RecorderComponent', () => {
   let component: RecorderComponent;
@@ -10,11 +9,8 @@ describe('RecorderComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        RecorderComponent,
-        GeneralButtonComponent,
-        TextBoxComponent,
-      ],
+      declarations: [RecorderComponent],
+      imports: [CoreModule, SharedModule],
     });
     fixture = TestBed.createComponent(RecorderComponent);
     component = fixture.componentInstance;

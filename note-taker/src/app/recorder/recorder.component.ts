@@ -1,5 +1,5 @@
 import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
-import { TextDataService } from '../service/text-data.service';
+import { TextDataService } from '../core/text-data.service';
 
 @Component({
   selector: 'app-recorder',

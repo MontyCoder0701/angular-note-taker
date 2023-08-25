@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { TextBoxComponent } from './text-box.component';
 
 describe('TextBoxComponent', () => {
@@ -8,7 +7,7 @@ describe('TextBoxComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [TextBoxComponent]
+      declarations: [TextBoxComponent],
     });
     fixture = TestBed.createComponent(TextBoxComponent);
     component = fixture.componentInstance;

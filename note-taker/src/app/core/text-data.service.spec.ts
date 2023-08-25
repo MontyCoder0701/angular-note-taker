@@ -1,12 +1,13 @@
 import { TestBed } from '@angular/core/testing';
-
 import { TextDataService } from './text-data.service';
 
 describe('TextDataService', () => {
   let service: TextDataService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      providers: [TextDataService],
+    });
     service = TestBed.inject(TextDataService);
   });
 
