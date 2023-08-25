@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { RecorderComponent } from './recorder.component';
-import { GeneralButtonComponent } from '../../shared/general-button/general-button.component';
+import { GeneralButtonComponent } from '../shared/general-button/general-button.component';
 import { TextBoxComponent } from 'src/app/shared/text-box/text-box.component';
 
 describe('RecorderComponent', () => {
